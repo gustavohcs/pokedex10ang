@@ -1,1 +1,111 @@
-<p>pokemon-list works!</p>
+<div class="container1">
+  <div class="col-space"></div>
+  <div class="side-content1" style="border-style: solid; border-width: 2px; border-color: #767676; border-radius: 3px; box-shadow: 0 0 0 4px #f5f5f5, 0 0 0 7px #AF0101, 15px 25px 50px #424242">
+    <div>
+      <div class="ck-toolbar">
+        <p style="padding-top: 35px; font-weight: bolder; ">Pokémon Name Filter:</p>
+        <input type="text" [ngModel]="filterString" (ngModelChange)="valuechange($event)" />
+      </div>
+
+      <!--  Seleciona qual pokedex será utilizada para consulta    -->
+      <div class="radio-toolbar" style="padding-top: 5px">
+        <p style="font-weight: bolder; margin-right: 25px">Pokédex:</p>
+      </div>
+      <div class="row radio-toolbar">
+        <input id="radNational" type="radio" name="rad" [(ngModel)]="national" (click)="findByRegion('National')"/><label for="radNational">National</label>
+        <input id="radKanto" type="radio" name="rad" (click)="findByRegion('Kanto')"/><label for="radKanto">Kanto</label>
+        <input id="radJohto" type="radio" name="rad" (click)="findByRegion('Johto')"/><label for="radJohto">Johto</label>
+        <input id="radHoenn" type="radio" name="rad" (click)="findByRegion('Hoenn')"/><label for="radHoenn">Hoenn</label>
+        <input id="radSinnoh" type="radio" name="rad"(click)="findByRegion('Sinnoh')"/><label for="radSinnoh">Sinnoh</label>
+        <input id="radUnova" type="radio" name="rad" (click)="findByRegion('Unova')"/><label for="radUnova">Unova</label>
+        <input id="radKalos-Central" type="radio" name="rad" (click)="findByRegion('Kalos-Central')"/><label for="radKalos-Central">Kalos-Central</label>
+        <input id="radKalos-Coastal" type="radio" name="rad" (click)="findByRegion('Kalos-Coastal')"/><label for="radKalos-Coastal">Kalos-Coastal</label>
+        <input id="radKalos-Mountain" type="radio" name="rad" (click)="findByRegion('Kalos-Mountain')"/><label for="radKalos-Mountain">Kalos-Mountain</label>
+        <input id="radAlola" type="radio" name="rad" (click)="findByRegion('Alola')"/><label for="radAlola">Alola</label>
+      </div>
+    </div>
+
+    <div>
+      <div class="ck-toolbar">
+        <p style="padding-top: 10px; font-weight: bolder; ">Generation(s):</p>
+        <div class="ck-toolbar2">
+          <!--  Filtro para consultar pokemons de selecionadas gerações  -->
+          <form class="row" [formGroup]="form" >
+            <label class="ck-button" [class.ck-bg]="flag1==true" for="regionData[0].name"><input id="regionData[0].name" name="regionData[0].name" type="checkbox" hidden (change)="onChange(regionData[0].name, $event.target.checked); flag1 = !flag1; searchGen('1', flag1) " />  {{ regionData[0].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag2==true" for="regionData[1].name"><input id="regionData[1].name" name="regionData[1].name" type="checkbox" hidden (change)="onChange(regionData[1].name, $event.target.checked); flag2 = !flag2; searchGen('2', flag2) " />  {{ regionData[1].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag3==true" for="regionData[2].name"><input id="regionData[2].name" name="regionData[2].name" type="checkbox" hidden (change)="onChange(regionData[2].name, $event.target.checked); flag3 = !flag3; searchGen('3', flag3) " />  {{ regionData[2].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag4==true" for="regionData[3].name"><input id="regionData[3].name" name="regionData[3].name" type="checkbox" hidden (change)="onChange(regionData[3].name, $event.target.checked); flag4 = !flag4; searchGen('4', flag4) " />  {{ regionData[3].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag5==true" for="regionData[4].name"><input id="regionData[4].name" name="regionData[4].name" type="checkbox" hidden (change)="onChange(regionData[4].name, $event.target.checked); flag5 = !flag5; searchGen('5', flag5) " />  {{ regionData[4].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag6==true" for="regionData[5].name"><input id="regionData[5].name" name="regionData[5].name" type="checkbox" hidden (change)="onChange(regionData[5].name, $event.target.checked); flag6 = !flag6; searchGen('6', flag6) " />  {{ regionData[5].name }}</label>
+            <label class="ck-button" [class.ck-bg]="flag7==true" for="regionData[6].name"><input id="regionData[6].name" name="regionData[6].name" type="checkbox" hidden (change)="onChange(regionData[6].name, $event.target.checked); flag7 = !flag7; searchGen('7', flag7) " />  {{ regionData[6].name }}</label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="side-content2" >
+    <div class="container2" style="background-color: #c2c2c2; border-style: solid; border-width: 2px; border-color: #767676; border-radius: 3px; border-top-left-radius: 0; border-bottom-left-radius: 0; box-shadow: 0 0 0 4px #f5f5f5, 0 0 0 7px #AF0101, 15px 25px 50px #424242; max-width: 75%; max-height: 710px">
+
+      <!--  TABELA COM A LISTA DE POKEMONS DA POKEDEX SELECIONADA   -->
+      <div class="inside-content">
+        <table class="table table-list" style="background-color: #c2c2c2 !important; color: #000000 !important; border-collapse: separate !important;">
+          <thead>
+          <tr>
+            <th>{{ pokedexRegion }} Pokédex</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor = "let pokemon of pokemonFilterList | filterpokedex : filterString ; let i = index" [attr.data-index]="i">
+            <td (click)="getPokemon(pokemon.pokemon_species.url)" style="text-align: center" class="capitalize"> {{ pokemon.entry_number }} - {{ pokemon.pokemon_species.name }}  </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--  TABELA COM AS INFORMAÇÕES DO POKEMON   -->
+      <div class="inside-content">
+        <table class="table table-list" style="border-left: solid 2px #767676; border-bottom: solid 2px #767676; background-color: #e2e2e2 !important; color: #000000 !important;">
+          <tbody style="min-height: 625px">
+          <tr>
+            <td colspan="2" class="capitalize" style="font-weight: bold">{{ pokemonSelected.name }}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><img src="{{ pokemonSelected.image }}"></td>
+          </tr>
+          <tr>
+            <td>Color </td>
+            <td class="capitalize">{{ pokemonSelected.color }}</td>
+          </tr>
+          <tr>
+            <td>Shape </td>
+            <td class="capitalize">{{ pokemonSelected.shape }}</td>
+          </tr>
+          <tr>
+            <td>Habitat </td>
+            <td class="capitalize">{{ pokemonSelected.habitat }}</td>
+          </tr>
+          <tr>
+            <td>Generation </td>
+            <td class="capitalize">{{ pokemonSelected.generation }}</td>
+          </tr>
+          <tr>
+            <td>Description </td>
+            <td class="capitalize">{{ pokemonSelected.flavorText }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center"><button style="align-content: center; align-items: center; align-self: center" (click)="addFavorite(pokemonSelected)">Add to Favorites</button></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center" *ngIf="flagAdd"> Success! </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>
