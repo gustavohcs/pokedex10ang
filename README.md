@@ -1,4 +1,4 @@
-### This is an application to simulate a pokedex without any bootstrap or angular material.
+## This is an application to simulate a pokedex without any bootstrap or angular material.
 
 To run this project, angular requires Node.js in your system (version 8.x or 10.x).
 
