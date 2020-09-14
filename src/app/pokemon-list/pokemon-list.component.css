@@ -84,6 +84,10 @@ tr:nth-child(even) {background-color: #d2d1d1;}
   text-transform: capitalize;
 }
 
+.capitalize-first-letter::first-letter {
+  text-transform: capitalize;
+}
+
 td {
   text-align: center;
 }

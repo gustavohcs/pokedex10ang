@@ -139,6 +139,10 @@ button {
 
 }
 
+.capitalize-first-letter::first-letter {
+  text-transform: capitalize;
+}
+
 button:hover {
   background-color: #cd5c5c;
   color: white;
