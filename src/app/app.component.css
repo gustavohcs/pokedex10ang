@@ -1,0 +1,53 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+.header {
+  grid-column: span 12;
+  position: absolute;
+  top: 0; /* you already have this */
+  width: 100%;
+}
+
+.main-content {
+  grid-column: span 12;
+}
+
+.side-content {
+  grid-column: span 12;
+}
+
+.footer {
+  grid-column: span 12;
+  background-color: #840202;
+  position: absolute;
+  bottom: 0; /* you already have this */
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #AF0101;
+}
+
+li {
+  float: left;
+  padding: 5px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 12px 14px;
+  text-decoration: none;
+}
+
+li a:hover {
+  font-weight: bold;
+}
