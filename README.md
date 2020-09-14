@@ -12,12 +12,13 @@ After you’ve installed NPM, you can install Angular CLI as the 2nd step. Open 
 
 ```npm install -g @angular/cli```
 
-With the terminal or prompt, in the directory of the application, type 
+At the directory of the application execute 
+```npm i npm-check-updates``` and
+```npm install```
+
+Then, to finally run the application with the terminal or prompt, in the directory of the application, type 
 
 ```ng serve```
-
-To finally run the application
-
 
 # Pokedex10ang
 

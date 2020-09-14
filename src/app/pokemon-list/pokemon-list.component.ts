@@ -117,10 +117,15 @@ export class PokemonListComponent implements OnInit {
         this.pokemonSelected.image = dataResult.sprites.front_default;
       });
       this.pokemonSelected.name = data.name;
+      // @ts-ignore
       this.pokemonSelected.color = data.color.name;
+      // @ts-ignore
       this.pokemonSelected.shape = data.shape.name;
+      // @ts-ignore
       this.pokemonSelected.generation = data.generation.name;
+      // @ts-ignore
       this.pokemonSelected.flavorText = data.flavor_text_entries[0].flavor_text;
+      // @ts-ignore
       this.pokemonSelected.habitat = data.habitat.name;
       this.pokemonService.getPokemonImage(data.name).subscribe( dataResult => {
         this.pokemonSelected.image = dataResult.sprites.front_default;

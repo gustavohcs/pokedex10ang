@@ -14,17 +14,17 @@ export class PokemonService {
   private regionIndex;
   constructor(private httpClient: HttpClient) { }
 
-  getPokemonListByPokedex(pokedexRegion: string): Observable<Pokemon[]> {
+  getPokemonListByPokedex(pokedexRegion: string): Observable<any> {
     this.solveRegionIndex(pokedexRegion);
-    return this.httpClient.get<Pokemon[]>(`${this.baseRegionURL + this.regionIndex}`);
+    return this.httpClient.get<any>(`${this.baseRegionURL + this.regionIndex}`);
   }
 
-  getPokemonListByGeneration(generation: string): Observable<Pokemon[]> {
-    return this.httpClient.get<Pokemon[]>(`${this.baseGenerationURL + generation}`);
+  getPokemonListByGeneration(generation: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseGenerationURL + generation}`);
   }
 
-  getPokemonSpecies(pokemonURL: string): Observable<Pokemon[]> {
-    return this.httpClient.get<Pokemon[]>(`${pokemonURL}`);
+  getPokemonSpecies(pokemonURL: string): Observable<Pokemon> {
+    return this.httpClient.get<Pokemon>(`${pokemonURL}`);
   }
 
   solveRegionIndex(pokedexRegion: string): any{

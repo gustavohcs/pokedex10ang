@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pokedex10ang"
+    }
+  },
+  "defaultProject": "pokedex10ang",
+  "cli": {
+    "analytics": false
+  }
 }
