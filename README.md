@@ -1,3 +1,24 @@
+### This is an application to simulate a pokedex without any bootstrap or angular material.
+
+To run this project, angular requires Node.js in your system (version 8.x or 10.x).
+
+Node has the Node Package Manager (NPM), which we need for installing Angular CLI and other programs (packages).
+
+Please follow this guide to correctly install node and npm:
+
+```https://codeburst.io/how-to-build-an-angular-app-with-angular-cli-in-a-couple-of-minutes-43089d3ab272```
+
+After you’ve installed NPM, you can install Angular CLI as the 2nd step. Open your terminal or command prompt and type the command below:
+
+```npm install -g @angular/cli```
+
+With the terminal or prompt, in the directory of the application, type 
+
+```ng serve```
+
+To finally run the application
+
+
 # Pokedex10ang
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
@@ -5,10 +26,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
